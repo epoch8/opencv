@@ -17,14 +17,17 @@ endif()
 
 include(cmake/OpenCVMinDepVersions.cmake)
 
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 if(CMAKE_GENERATOR MATCHES Xcode AND XCODE_VERSION VERSION_GREATER 4.3)
-  cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
+  cmake_minimum_required(VERSION 3.10 FATAL_ERROR)
 elseif(CMAKE_SYSTEM_NAME MATCHES WindowsPhone OR CMAKE_SYSTEM_NAME MATCHES WindowsStore)
-  cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
+  cmake_minimum_required(VERSION 3.10 FATAL_ERROR)
   #Required to resolve linker error issues due to incompatibility with CMake v3.0+ policies.
   #CMake fails to find _fseeko() which leads to subsequent linker error.
   #See details here: http://www.cmake.org/Wiki/CMake/Policies
-  cmake_policy(VERSION 2.8)
+  cmake_policy(VERSION 3.10)
 else()
   cmake_minimum_required(VERSION "${MIN_VER_CMAKE}" FATAL_ERROR)
 endif()
@@ -78,6 +81,10 @@ if(WINRT)
     set(WINRT_8_0 TRUE)
     add_definitions(-DWINRT_8_0)
   endif()
+endif()
+
+if(POLICY CMP0057)                                                                                                                                                          
+  cmake_policy(SET CMP0057 NEW)
 endif()
 
 if(POLICY CMP0026)
