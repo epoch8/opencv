@@ -99,4 +99,5 @@ build_opencv "arm64-v8a" "v8"
 echo "Build completed successfully."
 
 
-#run as 
+#run as sudo ./android_build.sh CMAKE_TOOLCHAIN_FILE=/Users/akor/Library/Android/sdk/ndk/16.1.4479499/build/cmake/android.toolchain.cmake
+#tooclhain 16 можно установить через Android studio: Tools -> SDK manager -> SDK Tools -> Show package details (галочка снизу) -> и выбрать нужную версию NDK
